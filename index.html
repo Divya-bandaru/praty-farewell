@@ -79,23 +79,16 @@ button:hover{
 }
 
 #farewellImage{
-    max-width:92%;
-    max-height:92%;
+    max-width:95vw;
+    max-height:95vh;
+    width:auto;
+    height:auto;
+    object-fit:contain;
     border-radius:15px;
     box-shadow:0 0 40px rgba(255,255,255,.6);
     transform:scale(.2);
     opacity:0;
     transition:all 1.4s ease;
-}
-
-#message{
-    position:absolute;
-    bottom:30px;
-    width:100%;
-    text-align:center;
-    font-size:32px;
-    opacity:0;
-    transition:1.5s;
 }
 </style>
 
@@ -117,82 +110,74 @@ button:hover{
 <div id="flash"></div>
 
 <div id="imageContainer">
-
-    <img id="farewellImage" src="farewell.png">
-
-    <div id="message">
-        ❤️ Thank You For Every Lesson, Every Laugh & Every Memory ❤️
-    </div>
-
+    <img id="farewellImage" src="farewell.png" alt="Farewell Image">
 </div>
 
 <script>
 
 function fireworks(){
 
-confetti({
-particleCount:180,
-spread:180,
-origin:{y:0.6}
-});
+    if(typeof confetti === "undefined"){
+        return;
+    }
 
-setTimeout(()=>{
-confetti({
-particleCount:150,
-angle:60,
-spread:100,
-origin:{x:0}
-});
-},300);
+    confetti({
+        particleCount:180,
+        spread:180,
+        origin:{y:0.6}
+    });
 
-setTimeout(()=>{
-confetti({
-particleCount:150,
-angle:120,
-spread:100,
-origin:{x:1}
-});
-},500);
+    setTimeout(()=>{
+        confetti({
+            particleCount:150,
+            angle:60,
+            spread:100,
+            origin:{x:0}
+        });
+    },300);
+
+    setTimeout(()=>{
+        confetti({
+            particleCount:150,
+            angle:120,
+            spread:100,
+            origin:{x:1}
+        });
+    },500);
 
 }
 
 function flash(){
 
-let f=document.getElementById("flash");
+    let f=document.getElementById("flash");
 
-f.style.transition="0.4s";
-f.style.opacity="1";
+    f.style.transition="0.4s";
+    f.style.opacity="1";
 
-setTimeout(()=>{
-f.style.opacity="0";
-},400);
+    setTimeout(()=>{
+        f.style.opacity="0";
+    },400);
 
 }
 
 function showSurprise(){
 
-document.getElementById("intro").style.display="none";
+    document.getElementById("intro").style.display="none";
 
-flash();
+    flash();
 
-fireworks();
+    fireworks();
 
-document.getElementById("imageContainer").style.display="flex";
+    document.getElementById("imageContainer").style.display="flex";
 
-setTimeout(()=>{
+    setTimeout(()=>{
 
-let img=document.getElementById("farewellImage");
+        let img=document.getElementById("farewellImage");
 
-img.style.opacity="1";
-img.style.transform="scale(1)";
+        img.style.opacity="1";
+        img.style.transform="scale(1)";
 
-},300);
-
-setTimeout(()=>{
-
-document.getElementById("message").style.opacity="1";
-
-},1800);
+    },300);
 
 }
 
